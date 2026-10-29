@@ -7,4 +7,7 @@ func main() {
     fmt.Scan(&first)
     fmt.Scan(&second)
     // Print one greeting per line, first name first.
+    fmt.Println("Hello,", first)
+    fmt.Println("Hello,", second)
+
 }
