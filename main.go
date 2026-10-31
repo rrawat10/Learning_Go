@@ -1,30 +1,25 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
-	"strings"
 )
 
-func increment(n *int) {
-	*n++
+func safeDivide(a, b int) (int, error) {
+	if b == 0 {
+		return 0, fmt.Errorf("divide by zero")
+	} else {
+		return a / b, nil
+	}
+
 }
 
 func main() {
-	r := bufio.NewReader(os.Stdin)
-	line, _ := r.ReadString('\n')
-	parts := strings.Fields(strings.TrimSpace(line))
-	nums := make([]int, 0, len(parts))
-	for _, p := range parts {
-		v, _ := strconv.Atoi(p)
-		nums = append(nums, v)
-	}
-	for i := range nums {
-		increment(&nums[i])
-	}
-	for _, v := range nums {
-		fmt.Println(v)
+	var a, b int
+	fmt.Scan(&a)
+	fmt.Scan(&b)
+	if q, err := safeDivide(a, b); err != nil {
+		fmt.Printf("error: %s\n", err)
+	} else {
+		fmt.Printf("result: %d\n", q)
 	}
 }
